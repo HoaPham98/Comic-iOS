@@ -15,7 +15,6 @@ class HomeViewController: UIViewController
     {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "ComicTableViewCell", bundle: nil), forCellReuseIdentifier: "ComicTableViewCell")
-        
     }
     
     /*
