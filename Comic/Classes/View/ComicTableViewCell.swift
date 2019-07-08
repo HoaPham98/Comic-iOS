@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ComicTableViewCell: UITableViewCell {
 
@@ -20,6 +21,7 @@ class ComicTableViewCell: UITableViewCell {
     {
         super.awakeFromNib()
         // Initialization code
+        self.comicImage.layer.cornerRadius = self.comicImage.frame.width/7
     }
 
     override func setSelected(_ selected: Bool, animated: Bool)
@@ -29,10 +31,12 @@ class ComicTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-//    func setUpCell(comicImage: UIImage)
-//    {
-//        <#function body#>
-//    }
+    func setUpCell(data: ComicHomeModel)
+    {
+        self.comicImage.kf.setImage(with: URL(string: data.img)!)
+        self.comicNameLbl.text = data.title
+        self.comicNameIssue.text = data.lastIssue
+    }
     
     @IBAction func likeButton(_ sender: Any)
     {

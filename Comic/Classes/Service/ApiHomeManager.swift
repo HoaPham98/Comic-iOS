@@ -11,7 +11,8 @@ import SwiftyJSON
 
 typealias CompletionDict = (Bool, [String: Any?]?)->()
 
-class ApiHomeManager {
+class ApiHomeManager
+{
     static let shared: ApiHomeManager = ApiHomeManager()
     
     func getHomeComics(completion: @escaping CompletionDict) {
@@ -46,12 +47,13 @@ class ApiHomeManager {
                         
                         completion(true, ["newest": newest, "popular": popular])
                     }
-                } else {
+                }
+                else
+                {
                     completion(false , nil)
                 }
             }
         })
-        
         dataTask.resume()
     }
 }
