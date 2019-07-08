@@ -22,7 +22,8 @@ class DetailComicModel: NSObject {
     var cover: String = ""
     var issues: [Issue] = [Issue]()
     
-    convenience init(json: JSON) {
+    convenience init(json: JSON)
+    {
         self.init()
         self.id = json["_id"].intValue
         self.title = json["title"].stringValue
@@ -41,12 +42,14 @@ class DetailComicModel: NSObject {
     }
 }
 
-class RelatedComic: NSObject {
+class RelatedComic: NSObject
+{
     var id: Int = 0
     var title: String = ""
     var cover: String = ""
     
-    convenience init(json: JSON) {
+    convenience init(json: JSON)
+    {
         self.init()
         self.id = json["id"].intValue
         self.title = json["title"].stringValue
@@ -58,7 +61,8 @@ class Issue: NSObject {
     var id: Int = 0
     var title: String = ""
     
-    convenience init(json: JSON) {
+    convenience init(json: JSON)
+    {
         self.init()
         self.id = json["_id"].intValue
         self.title = json["title"].stringValue

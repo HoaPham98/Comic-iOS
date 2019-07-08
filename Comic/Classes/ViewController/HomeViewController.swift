@@ -58,6 +58,9 @@ class HomeViewController: UIViewController
         
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "ComicTableViewCell", bundle: nil), forCellReuseIdentifier: "ComicTableViewCell")
+        ApiHomeManager.shared.getDetail { (status, data) in
+            
+        }
         ApiHomeManager.shared.getHomeComics
         { (status, data) in
             let newest = data!["newest"] as! [ComicHomeModel]
@@ -67,6 +70,7 @@ class HomeViewController: UIViewController
                 self.tableView.reloadData()
             }
         }
+        
     }
     
     /*
