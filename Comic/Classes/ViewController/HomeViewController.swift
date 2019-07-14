@@ -53,13 +53,25 @@ import UIKit
 class HomeViewController: UIViewController
 {
     @IBOutlet weak var tableView: UITableView!
+    var arrayData = [ComicHomeModel]()
+    var popularData = [ComicHomeModel]()
     override func viewDidLoad()
     {
         
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "ComicTableViewCell", bundle: nil), forCellReuseIdentifier: "ComicTableViewCell")
-        
-        
+        ApiHomeManager.shared.getHomeComics { (success, data) in
+            if success
+            {
+                let popular = data!["popular"] as! [ComicHomeModel]
+                let new = data!["newest"] as! [ComicHomeModel]
+                self.arrayData = new
+                self.popularData = popular
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
     /*
@@ -88,11 +100,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource
         if indexPath.row == 0
         {
             cell.setUpCell(category: "Top Read Comics")
+            cell.arrayData = arrayData
             return cell
         }
         else if indexPath.row == 1
         {
             cell.setUpCell(category: "Newest Comics")
+            cell.arrayData = popularData
             return cell
         }
         else

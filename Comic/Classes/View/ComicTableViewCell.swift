@@ -13,7 +13,14 @@ class ComicTableViewCell: UITableViewCell {
 
     @IBOutlet weak var categoryLbl: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    var arrayData = [ComicHomeModel]()
+    var arrayData = [ComicHomeModel]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                
+            }
+        }
+    }
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -26,16 +33,8 @@ class ComicTableViewCell: UITableViewCell {
         self.collectionView.delegate = self
         self.collectionView.register(UINib(nibName: "ComicCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ComicCollectionViewCell")
         
-        ApiHomeManager.shared.getHomeComics { (success, data) in
-            if success
-            {
-                let new = data!["newest"] as! [ComicHomeModel]
-                self.arrayData = new
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }
-        }
+        
+        
     }
     @IBAction func seeAllBtt(_ sender: Any) {
     }
