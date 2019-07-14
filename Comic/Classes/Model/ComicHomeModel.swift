@@ -9,13 +9,15 @@
 import Foundation
 import SwiftyJSON
 
-class ComicHomeModel: NSObject {
+class ComicHomeModel: NSObject
+{
     var id: Int = 0
     var title: String = ""
     var lastIssue: String = ""
     var img: String = ""
     
-    convenience init(json: JSON) {
+    convenience init(json: JSON)
+    {
         self.init()
         self.id = json["id"].intValue
         self.title = json["title"].stringValue

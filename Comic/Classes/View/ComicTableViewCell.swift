@@ -11,19 +11,35 @@ import Kingfisher
 
 class ComicTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var comicImage: UIImageView!
-    @IBOutlet weak var comicNameLbl: UILabel!
-    @IBOutlet weak var comicNameIssue: UILabel!
-    @IBOutlet weak var starRateLbl: UILabel!
-    @IBOutlet weak var starRateView: UIView!
-    @IBOutlet weak var ratingLbl: UILabel!
+    @IBOutlet weak var categoryLbl: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    var arrayData = [ComicHomeModel]()
     override func awakeFromNib()
     {
         super.awakeFromNib()
         // Initialization code
-        self.comicImage.layer.cornerRadius = self.comicImage.frame.width/7
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = CGSize(width: 390, height: 220)
+        self.collectionView.collectionViewLayout = flowLayout
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.register(UINib(nibName: "ComicCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ComicCollectionViewCell")
+        
+        ApiHomeManager.shared.getHomeComics { (success, data) in
+            if success
+            {
+                let new = data!["newest"] as! [ComicHomeModel]
+                self.arrayData = new
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
     }
-
+    @IBAction func seeAllBtt(_ sender: Any) {
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
@@ -31,16 +47,24 @@ class ComicTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setUpCell(data: ComicHomeModel)
+    func setUpCell(category: String)
     {
-        self.comicImage.kf.setImage(with: URL(string: data.img)!)
-        self.comicNameLbl.text = data.title
-        self.comicNameIssue.text = data.lastIssue
+        self.categoryLbl.text = category
+    }
+}
+
+extension ComicTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return arrayData.count
     }
     
-    @IBAction func likeButton(_ sender: Any)
-    {
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComicCollectionViewCell", for: indexPath) as! ComicCollectionViewCell
+        cell.setUpCell(data: arrayData[indexPath.row])
+        return cell
     }
+    
     
 }

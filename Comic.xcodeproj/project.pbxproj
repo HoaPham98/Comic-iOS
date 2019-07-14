@@ -18,6 +18,8 @@
 		64278C000C2050F4B6228201 /* Pods_Comic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98711D74374B76991872B457 /* Pods_Comic.framework */; };
 		FA21C1F022D366630019A8BC /* ComicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA21C1EE22D366630019A8BC /* ComicTableViewCell.xib */; };
 		FA21C1F122D366630019A8BC /* ComicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21C1EF22D366630019A8BC /* ComicTableViewCell.swift */; };
+		FA2DE64522DACBDD009982B4 /* ComicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DE64322DACBDD009982B4 /* ComicCollectionViewCell.swift */; };
+		FA2DE64622DACBDD009982B4 /* ComicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2DE64422DACBDD009982B4 /* ComicCollectionViewCell.xib */; };
 		FA8E61BB22D21BDC003E755B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E61BA22D21BDC003E755B /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		98711D74374B76991872B457 /* Pods_Comic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Comic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA21C1EE22D366630019A8BC /* ComicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComicTableViewCell.xib; sourceTree = "<group>"; };
 		FA21C1EF22D366630019A8BC /* ComicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicTableViewCell.swift; sourceTree = "<group>"; };
+		FA2DE64322DACBDD009982B4 /* ComicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA2DE64422DACBDD009982B4 /* ComicCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicCollectionViewCell.xib; sourceTree = "<group>"; };
 		FA8E61BA22D21BDC003E755B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Comic/Classes/ViewController/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -105,6 +109,8 @@
 			children = (
 				FA21C1EF22D366630019A8BC /* ComicTableViewCell.swift */,
 				FA21C1EE22D366630019A8BC /* ComicTableViewCell.xib */,
+				FA2DE64322DACBDD009982B4 /* ComicCollectionViewCell.swift */,
+				FA2DE64422DACBDD009982B4 /* ComicCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -216,6 +222,7 @@
 			files = (
 				4008DCEB22D2164A00592A9B /* Main.storyboard in Resources */,
 				FA21C1F022D366630019A8BC /* ComicTableViewCell.xib in Resources */,
+				FA2DE64622DACBDD009982B4 /* ComicCollectionViewCell.xib in Resources */,
 				4008DCDA22D2125D00592A9B /* LaunchScreen.storyboard in Resources */,
 				4008DCD722D2125D00592A9B /* Assets.xcassets in Resources */,
 			);
@@ -272,6 +279,7 @@
 			files = (
 				FA21C1F122D366630019A8BC /* ComicTableViewCell.swift in Sources */,
 				4008DCEF22D21F9E00592A9B /* DetailComicModel.swift in Sources */,
+				FA2DE64522DACBDD009982B4 /* ComicCollectionViewCell.swift in Sources */,
 				4008DCED22D21EC300592A9B /* ComicHomeModel.swift in Sources */,
 				4008DCD222D2125C00592A9B /* ViewController.swift in Sources */,
 				4008DCE922D2157E00592A9B /* ApiHomeManager.swift in Sources */,

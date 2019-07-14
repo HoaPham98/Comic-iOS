@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 @IBDesignable class RoundButton: UIButton
 {
     @IBInspectable var cornerRadius: CGFloat = 15
@@ -52,24 +53,12 @@ import UIKit
 class HomeViewController: UIViewController
 {
     @IBOutlet weak var tableView: UITableView!
-    var arrayData = [ComicHomeModel]()
     override func viewDidLoad()
     {
         
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "ComicTableViewCell", bundle: nil), forCellReuseIdentifier: "ComicTableViewCell")
-        ApiHomeManager.shared.getDetail { (status, data) in
-            
-        }
-        ApiHomeManager.shared.getHomeComics
-        { (status, data) in
-            let newest = data!["newest"] as! [ComicHomeModel]
-            DispatchQueue.main.async
-            {
-                self.arrayData = newest
-                self.tableView.reloadData()
-            }
-        }
+        
         
     }
     
@@ -90,16 +79,30 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return arrayData.count
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ComicTableViewCell", for: indexPath) as! ComicTableViewCell
-        cell.setUpCell(data: arrayData[indexPath.row])
-        
-        return cell
+        if indexPath.row == 0
+        {
+            cell.setUpCell(category: "Top Read Comics")
+            return cell
+        }
+        else if indexPath.row == 1
+        {
+            cell.setUpCell(category: "Newest Comics")
+            return cell
+        }
+        else
+        {
+            return cell
+        }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
+    }
     
 }
